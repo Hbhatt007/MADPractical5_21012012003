@@ -23,7 +23,7 @@
         android:layout_marginTop="25dp"
         android:text="MP3 Player"
         android:textColor="@color/white"
-        android:textSize="25sp"
+        android:textSize="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,9 +43,9 @@
         <ImageView
             android:id="@+id/iv_song"
             android:layout_width="match_parent"
-            android:layout_height="341dp"
+            android:layout_height="360dp"
             android:scaleType="fitXY"
-            android:src="@drawable/rrr" />
+            android:background="@drawable/rrr" />
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -73,7 +73,7 @@
                 android:layout_marginTop="20dp"
                 android:text="Dosti Music Video"
                 android:textColor="@color/black"
-                android:textSize="20sp"
+                android:textSize="20dp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

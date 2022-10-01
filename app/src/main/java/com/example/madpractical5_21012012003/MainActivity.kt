@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
@@ -90,9 +91,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun updateUI(playingIndex: Int) {
-        imageSong.setImageDrawable(
-            ResourcesCompat.getDrawable(resources, imageFileArray[playingIndex], null)
-        )
+//        imageSong.setImageDrawable(
+//           ContextCompat.getDrawable(this, imageFileArray[playingIndex])
+//        )
+        imageSong.setBackgroundResource(imageFileArray[playingIndex])
         songName.text = songNameArray[playingIndex]
     }
     private fun setPause() {
