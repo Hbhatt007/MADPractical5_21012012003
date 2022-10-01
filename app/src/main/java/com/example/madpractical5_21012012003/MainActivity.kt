@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -14,10 +15,9 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private var flag = false // false = play and true = pause
-    private lateinit var btnPlay: FloatingActionButton
+    private lateinit var btnPlay: ImageButton
     private lateinit var imageSong: ImageView
     private lateinit var songName: TextView
-    private lateinit var songView: TextView
     private lateinit var imageFileArray: IntArray
     private lateinit var songNameArray: ArrayList<String>
     private lateinit var songViewArray: ArrayList<String>
@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         setStatusBarTransparent()
         imageSong = findViewById(R.id.iv_song)
         songName = findViewById(R.id.song_name)
-        songView = findViewById(R.id.song_views)
 
         var playingIndex = 0
 
@@ -51,7 +50,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
-        val btnStop = findViewById<FloatingActionButton>(R.id.btn_stop)
+        val btnStop = findViewById<ImageButton>(R.id.btn_stop)
         btnStop.setOnClickListener {
             setPlay()
             flag = false
@@ -59,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 stopService(this)
             }
         }
-        val btnNext = findViewById<FloatingActionButton>(R.id.btn_next)
+        val btnNext = findViewById<ImageButton>(R.id.btn_next)
         btnNext.setOnClickListener {
             setPause()
             flag = true
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             }
             updateUI(playingIndex)
         }
-        val btnPrev = findViewById<FloatingActionButton>(R.id.btn_previous)
+        val btnPrev = findViewById<ImageButton>(R.id.btn_previous)
         btnPrev.setOnClickListener {
             setPause()
             flag = true
@@ -95,7 +94,6 @@ class MainActivity : AppCompatActivity() {
             ResourcesCompat.getDrawable(resources, imageFileArray[playingIndex], null)
         )
         songName.text = songNameArray[playingIndex]
-        songView.text = songViewArray[playingIndex]
     }
     private fun setPause() {
         btnPlay.setImageDrawable(
