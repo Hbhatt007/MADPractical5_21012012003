@@ -8,48 +8,45 @@ import android.os.Bundle
 import android.os.IBinder
 
 class MyService : Service() {
-    companion object {
-        public val DATA_KEY = "service"
-        val DATA_VALUE = "play/puse"
+
+    companion object{
+        var DATA_KEY="service"
+        const val DATA_VALUE="play/pause"
+
     }
-
-    private lateinit var mediaPlayer: MediaPlayer
-    private val audioFileArray = intArrayOf(R.raw.rrr, R.raw.kgf, R.raw.chotabheem)
-
-
+    private lateinit var player: MediaPlayer
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-
-        val playingIndex = intent?.getIntExtra("playingIndex", 0) ?: 0
-
-        if (!this::mediaPlayer.isInitialized) {
-            mediaPlayer = MediaPlayer.create(this, audioFileArray[playingIndex])
+        if (!this::player.isInitialized) {
+            player = MediaPlayer.create(this, R.raw.rrr)
         }
-        if (intent != null) {
-            val data: String? = intent.getStringExtra("service")
-            if (data == "play/pause") {
-                if (!mediaPlayer.isPlaying) {
-                    mediaPlayer.start()
-                } else {
-                    mediaPlayer.pause()
+        if (intent != null)
+        {
+            val str=intent.getStringExtra(DATA_KEY)
+            if(str== DATA_VALUE)
+            {
+                if(player.isPlaying)
+                {
+                    player.pause()
                 }
-            } else if (data == "next/prev") {
-                mediaPlayer.stop()
-                mediaPlayer.reset()
-                mediaPlayer = MediaPlayer.create(this, audioFileArray[playingIndex])
-                mediaPlayer.start()
+                else{
+                    player.start()
+                }
             }
-        } else {
-            mediaPlayer.start()
         }
+        else{
+            player.start()
+        }
+
         return START_STICKY
     }
 
     override fun onDestroy() {
-        mediaPlayer.stop()
+        player.stop()
         super.onDestroy()
     }
+
 }
